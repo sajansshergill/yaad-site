@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in — Yaad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="header.css">
+<style>
+:root{--bg:#f4ecdf;--ink:#1c1612;--muted:#7c6b58;--line:#e7d8c4;--saffron:#c45c26;--indigo:#1e2a4a}
+*{box-sizing:border-box; margin:0; padding:0}
+body{color:var(--ink); font-family:Outfit,"Segoe UI",sans-serif; min-height:100vh; margin:0;
+  background:radial-gradient(700px 420px at 50% -10%, rgba(196,92,38,.16), transparent 60%), var(--bg)}
+.login-stage{min-height:calc(100vh - 140px); display:flex; align-items:center; justify-content:center; padding:28px 24px 40px}
+.card{background:#fffaf3; border:1px solid var(--line); border-radius:24px; padding:36px; width:100%; max-width:420px; box-shadow:0 18px 50px rgba(70,42,16,.08)}
+.brand{font-family:Fraunces,Georgia,serif; font-weight:560; font-size:26px; display:flex; gap:10px; align-items:center; justify-content:center; margin-bottom:8px; text-decoration:none; color:var(--ink)}
+.seal{width:36px; height:36px; border-radius:12px; background:var(--indigo); color:#f6efe4; display:inline-flex; align-items:center; justify-content:center; font-family:Fraunces,Georgia,serif; font-size:20px}
+h1{font-family:Fraunces,Georgia,serif; font-weight:560; font-size:30px; letter-spacing:-.03em; text-align:center; margin:16px 0 6px}
+.sub{color:var(--muted); font-size:15px; text-align:center; margin-bottom:24px}
+#google_btn{display:flex; justify-content:center; margin-bottom:8px; min-height:0}
+#google_note{font-size:12.5px; color:var(--muted); text-align:center; margin-bottom:8px}
+.divider{display:flex; align-items:center; gap:12px; color:var(--muted); font-size:13px; margin:18px 0}
+.divider::before,.divider::after{content:""; flex:1; height:1px; background:var(--line)}
+label{display:block; font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--muted); margin:14px 0 6px}
+input{width:100%; background:#fff; border:1.5px solid var(--line); border-radius:12px; color:var(--ink); padding:12px 14px; font-size:16px; font-family:inherit}
+input:focus{outline:none; border-color:var(--saffron)}
+.btn{width:100%; margin-top:20px; background:var(--indigo); color:#f6efe4; border:none; border-radius:14px; padding:13px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn:hover{background:#162038}
+.btn:disabled{opacity:.6; cursor:wait}
+.err{display:none; background:#fff5ee; border:1px solid #f3d2bc; color:#9a3412; font-size:13.5px; border-radius:12px; padding:10px 14px; margin-top:16px}
+.toggle{text-align:center; margin-top:18px; font-size:14px; color:var(--muted)}
+.toggle a{color:var(--saffron); font-weight:700; cursor:pointer}
+.back{display:block; text-align:center; margin-top:22px; font-size:13px; color:var(--muted); text-decoration:none}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap site-head-top">
+    <a class="site-brand" href="./"><span class="site-seal">य</span><span class="site-lockup"><span class="site-name">Yaad</span><span class="site-tag">The tutor that remembers</span></span></a>
+    <div class="site-cta">
+      <a class="site-btn site-btn-line" href="login" aria-current="page">Sign in</a>
+      <a class="site-btn site-btn-solid" href="login?mode=signup">Start free</a>
+    </div>
+  </div>
+  <nav class="wrap site-sections" aria-label="Sections">
+    <a href="./#how">How it works</a>
+    <a href="./#loop">Daily loop</a>
+    <a href="./#map">The degree</a>
+    <a href="./#earn">Interviews</a>
+    <a href="./#api">For builders</a>
+    <a href="./#price">Pricing</a>
+    <a href="./#faq">FAQ</a>
+    <a href="founder">Founder</a>
+    <a href="story">The build</a>
+    <a href="privacy">Privacy</a>
+    <a href="contact">Contact</a>
+  </nav>
+</header>
+<main class="login-stage">
+<div class="card">
+  <a class="brand" href="./"><span class="seal">य</span>Yaad</a>
+  <h1 id="title">Welcome back</h1>
+  <p class="sub" id="subtitle">Sign in to continue your streak.</p>
+
+  <div id="google_btn"></div>
+  <p id="google_note"></p>
+
+  <div class="divider">or with email</div>
+
+  <form id="form">
+    <div id="name_wrap" style="display:none">
+      <label for="f_name">Name</label>
+      <input id="f_name" type="text" autocomplete="name" placeholder="Aarav Sharma">
+    </div>
+    <label for="f_email">Email</label>
+    <input id="f_email" type="email" autocomplete="email" placeholder="you@example.com" required>
+    <label for="f_pw">Password</label>
+    <input id="f_pw" type="password" autocomplete="current-password" placeholder="••••••••" required>
+    <div class="err" id="err"></div>
+    <button class="btn" id="submit" type="submit">Sign in</button>
+  </form>
+
+  <p class="toggle" id="toggle_wrap"><span id="toggle_text">New to Yaad?</span> <a id="toggle">Create an account</a></p>
+  <a class="back" href="./">← Back to yaad</a>
+</div>
+</main>
+
+<script>
+const params = new URLSearchParams(location.search);
+const next = params.get("next") || "/app";
+let mode = params.get("mode") === "signup" ? "signup" : "signin";
+const $ = (id) => document.getElementById(id);
+
+function setMode(m) {
+  mode = m;
+  const up = m === "signup";
+  $("title").textContent = up ? "Create your account" : "Welcome back";
+  $("subtitle").textContent = up ? "One question a day. A tutor that never forgets." : "Sign in to continue your streak.";
+  $("name_wrap").style.display = up ? "block" : "none";
+  $("submit").textContent = up ? "Create account" : "Sign in";
+  $("toggle_text").textContent = up ? "Already have an account?" : "New to Yaad?";
+  $("toggle").textContent = up ? "Sign in" : "Create an account";
+  $("err").style.display = "none";
+}
+$("toggle").onclick = () => setMode(mode === "signup" ? "signin" : "signup");
+setMode(mode);
+
+function fail(msg) {
+  const e = $("err");
+  e.textContent = msg;
+  e.style.display = "block";
+  $("submit").disabled = false;
+  $("submit").textContent = mode === "signup" ? "Create account" : "Sign in";
+}
+
+$("form").onsubmit = async (ev) => {
+  ev.preventDefault();
+  $("submit").disabled = true;
+  $("submit").textContent = "…";
+  try {
+    const body = { email: $("f_email").value, password: $("f_pw").value };
+    if (mode === "signup") body.name = $("f_name").value;
+    const r = await fetch("/api/auth/" + (mode === "signup" ? "signup" : "login"), {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || "Something went wrong.");
+    location.href = next;
+  } catch (e) { fail(e.message); }
+};
+
+// Google sign-in, only if the server has a client ID configured.
+fetch("/api/auth/config").then(r => r.json()).then(cfg => {
+  if (!cfg.googleClientId) {
+    $("google_note").textContent = "Google sign-in coming soon — use email for now.";
+    return;
+  }
+  const s = document.createElement("script");
+  s.src = "https://accounts.google.com/gsi/client";
+  s.async = true; s.defer = true;
+  s.onload = () => {
+    google.accounts.id.initialize({
+      client_id: cfg.googleClientId,
+      callback: async (resp) => {
+        try {
+          const r = await fetch("/api/auth/google", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id_token: resp.credential }),
+          });
+          const j = await r.json();
+          if (!r.ok) throw new Error(j.error || "Google sign-in failed.");
+          location.href = next;
+        } catch (e) { fail(e.message); }
+      },
+    });
+    google.accounts.id.renderButton($("google_btn"), { theme: "filled_black", size: "large", width: 340, text: "continue_with" });
+  };
+  document.head.appendChild(s);
+}).catch(() => { $("google_note").textContent = ""; });
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — Yaad</title>
+<meta name="description" content="What Yaad stores about you: the account, the memory, the photo, and the API key.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,680&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="header.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap site-head-top">
+    <a class="site-brand" href="./"><span class="site-seal">य</span><span class="site-lockup"><span class="site-name">Yaad</span><span class="site-tag">The tutor that remembers</span></span></a>
+    <div class="site-cta">
+      <a class="site-btn site-btn-line" href="login">Sign in</a>
+      <a class="site-btn site-btn-solid" href="login?mode=signup">Start free</a>
+    </div>
+  </div>
+  <nav class="wrap site-sections" aria-label="Sections">
+    <a href="./#how">How it works</a>
+    <a href="./#loop">Daily loop</a>
+    <a href="./#map">The degree</a>
+    <a href="./#earn">Interviews</a>
+    <a href="./#api">For builders</a>
+    <a href="./#price">Pricing</a>
+    <a href="./#faq">FAQ</a>
+    <a href="founder">Founder</a>
+    <a href="story">The build</a>
+    <a href="privacy" aria-current="page">Privacy</a>
+    <a href="contact">Contact</a>
+  </nav>
+</header>
+
+<article class="page">
+  <div class="wrap narrow prose">
+    <p class="kicker">Privacy</p>
+    <h1>What Yaad keeps, and why.</h1>
+    <p class="lede">The product is a memory. This page says which memories are yours, which stay on the machine running Yaad, and which never need to be collected.</p>
+
+    <h2>Your account</h2>
+    <p>Email and a password, or Google. The password is stored as a salted hash. The session is a cookie on your browser, marked so page scripts cannot read it, and it lasts 30 days. Your name, an optional about line, and an optional photo live on the account. The photo has to be a JPEG, PNG, or WebP, and it is kept small. Removing it deletes it.</p>
+    <p>If you signed in with Google, the email stays the one Google gave Yaad. Yaad checks the sign-in token against Google’s keys. It does not ask for your Google password.</p>
+
+    <h2>Your studying</h2>
+    <p>Signing up creates one student and one personal API key. The key stays on the server. The page never receives the secret. What the tutor remembers is the study record: topics and scores, the concept behind a miss, sittings, courses you add from a syllabus, and a streak. That record is how tomorrow’s question knows yesterday. It is also how the degree map, the interview score, and the portfolio line are computed.</p>
+    <p>Study groups store a name, a short code, and which students joined, so the group can see shared gaps. You choose to create or join one.</p>
+
+    <h2>Where it sits</h2>
+    <p>On this build, accounts and study records live in a data file on the machine running Yaad. They are not a separate cloud profile. The tutor’s replies go through Yaad to the model provider, using a key that stays in the server’s environment. The industry brief is a cache of public stories. It is not tied to your account.</p>
+    <p>Yaad does not sell the record, and it does not ask for a phone number, a card, or a street address. Changing your email on a password account requires the current password, so a leftover session cannot quietly move the account.</p>
+
+    <h2>If you want it gone</h2>
+    <p>Sign out ends the session in the browser. To remove the account and the study record themselves, write to <a href="mailto:sajanshergill@gmail.com">sajanshergill@gmail.com</a> from the email on the account. Say what you want deleted. The founder reads it.</p>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="./"><span class="seal">य</span>Yaad</a>
+    <nav>
+      <a href="founder">Founder</a>
+      <a href="story">The build</a>
+      <a href="privacy">Privacy</a>
+      <a href="contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

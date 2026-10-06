@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Yaad was built</title>
+<meta name="description" content="The decisions behind Yaad: a memory for one student, then a map of a whole data-science degree.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,680&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="header.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap site-head-top">
+    <a class="site-brand" href="./"><span class="site-seal">य</span><span class="site-lockup"><span class="site-name">Yaad</span><span class="site-tag">The tutor that remembers</span></span></a>
+    <div class="site-cta">
+      <a class="site-btn site-btn-line" href="login">Sign in</a>
+      <a class="site-btn site-btn-solid" href="login?mode=signup">Start free</a>
+    </div>
+  </div>
+  <nav class="wrap site-sections" aria-label="Sections">
+    <a href="./#how">How it works</a>
+    <a href="./#loop">Daily loop</a>
+    <a href="./#map">The degree</a>
+    <a href="./#earn">Interviews</a>
+    <a href="./#api">For builders</a>
+    <a href="./#price">Pricing</a>
+    <a href="./#faq">FAQ</a>
+    <a href="founder">Founder</a>
+    <a href="story" aria-current="page">The build</a>
+    <a href="privacy">Privacy</a>
+    <a href="contact">Contact</a>
+  </nav>
+</header>
+
+<article class="page">
+  <div class="wrap narrow prose">
+    <p class="kicker">The build</p>
+    <h1>What had to be true before the rest was allowed.</h1>
+    <p class="lede">Each piece was added when the previous one was already keeping a promise to one student.</p>
+
+    <h2>A miss has to survive the tab</h2>
+    <p>The first artifact was a memory model, not a pitch. Four records: who the student is, how each topic is sitting, the concept behind a mistake, and a short note from the last sitting. A new topic starts at 50, the middle of the scale. A correct answer pulls the score toward 100. A wrong one pulls it down. A quiet week lets it decay, and it does not fall through the floor. The line the product is for is specific: last time this chapter tripped you up, so we begin here.</p>
+    <p>The proof was a sitting. A student says sine of 30 degrees is 1. The chips, the score, and the open gap all move to trigonometry before the next sentence. That scene also showed the two failures worth keeping: the tutor sometimes hands over the finished value, and a gap sometimes gets stored as a label instead of a sentence a person can say. Both are still the standard the product is held to.</p>
+
+    <h2>The key left the page</h2>
+    <p>The demo used to call the model from the browser. The page failed, and the key now stays on the server. That server serves the site and proxies the tutor. The page only talks to Yaad.</p>
+    <p>The same memory then became an API another tutor can call: create a student, record an answer, close a sitting, ask for the line that should open tomorrow. Later, each customer got a key, and every call is counted per key, per day. You cannot pilot or price a memory you cannot see being used.</p>
+
+    <h2>One sharp subject, then his own degree</h2>
+    <p>Class 10 maths was the flagship because the promise had to be narrow enough to be false if it broke. Hindi and English are the languages the tutor will answer in. Anything else is refused. Remembering then had to act: a drill that stays on the open gap until a correct answer clears it, a streak that is earned by showing up, and one line a parent could actually read at dinner.</p>
+    <p>The audience moved when he looked at the MS he completed. Students in a US data-science master’s lose the thread between courses and arrive at interviews with tuition and no receipt. The semester packs are the courses from his degree: mathematics, databases, algorithms, machine learning, scalable databases, data mining, deep learning, the practical course. Class 10 stayed, because the memory rule holds whichever syllabus you give it.</p>
+    <p>A pasted syllabus becomes a course, so the pack is not limited to his transcript. The degree map shows where you are across all of them. One student record crosses courses, so probability practised in mathematics is the same probability machine learning needs. Interview mode asks the hiring version of the miss. A portfolio page turns the record into a line you can paste. A study group shares the gaps. Viva mode speaks the question so you have to answer out loud.</p>
+
+    <h2>The day, and the person</h2>
+    <p>The daily loop is four things: one question on the weakest topic, the fix-my-mistakes drill, the streak, and an industry brief pulled from the day’s public data-science stories and cached so the tutor is not fetching the internet for every student. The site in front of the tutor explains the promise, then asks you to sign in with Google or email. The account creates your student and your key. The profile is the name the tutor greets, a short about, and a photo if you want one.</p>
+    <p>The desk looks like a tuition table on purpose. Warm paper, an indigo seal, a serif for the name. The first demo looked like a settings panel that happened to chat. A person sitting down should feel expected.</p>
+    <p><a href="founder">Read who is building it</a>, or <a href="login?mode=signup">start with one question</a>.</p>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="./"><span class="seal">य</span>Yaad</a>
+    <nav>
+      <a href="founder">Founder</a>
+      <a href="story">The build</a>
+      <a href="privacy">Privacy</a>
+      <a href="contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

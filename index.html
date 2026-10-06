@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yaad — The tutor that remembers</title>
+<meta name="description" content="Yaad is the tutor for a US master's in Data Science. It remembers where you are in the degree, and turns each miss into the way that concept shows up in an interview.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,680&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="header.css">
+<style>
+:root{
+  --bg:#f4ecdf; --ink:#1c1612; --muted:#7c6b58; --card:#fffaf3; --line:#e7d8c4;
+  --saffron:#c45c26; --indigo:#1e2a4a; --field:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink); font-family:Outfit, "Segoe UI", sans-serif; line-height:1.55;
+  background:
+    radial-gradient(900px 420px at 8% -10%, rgba(196,92,38,.16), transparent 55%),
+    radial-gradient(800px 480px at 100% 0%, rgba(30,42,74,.10), transparent 50%),
+    var(--bg);
+}
+h1,h2,h3{font-family:Fraunces, Georgia, serif; font-weight:560; letter-spacing:-.03em; margin:0}
+a{color:inherit; text-decoration:none}
+.wrap{max-width:1120px; margin:0 auto; padding:0 22px}
+.brand{display:flex; align-items:center; gap:10px; font-family:Fraunces, Georgia, serif; font-size:26px; font-weight:560; color:#f6efe4; text-decoration:none}
+.seal{
+  width:40px; height:40px; border-radius:14px; background:var(--indigo); color:#f6efe4;
+  display:flex; align-items:center; justify-content:center; font-family:Fraunces, Georgia, serif; font-size:22px;
+}
+.nav-links{display:flex; gap:22px; color:var(--muted); font-size:14.5px; font-weight:600}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:flex; gap:8px}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:14px; font-weight:650; font-family:inherit; cursor:pointer; border:1.5px solid transparent;
+}
+.btn-solid{background:var(--indigo); color:#f6efe4; padding:12px 18px}
+.btn-solid:hover{background:#162038}
+.btn-line{background:transparent; color:var(--indigo); border-color:#c9b59a; padding:11px 16px}
+.btn-line:hover{border-color:var(--saffron); color:var(--saffron)}
+.hero{
+  padding:84px 0 0; text-align:center;
+  background:
+    radial-gradient(980px 460px at 50% -8%, #d5e9ff 0%, transparent 68%),
+    linear-gradient(180deg, #eaf4ff 0%, #f7f2e8 72%, transparent 100%);
+}
+.hero-copy{max-width:780px; margin:0 auto}
+.hero-stage{max-width:640px; margin:42px auto 0; text-align:left}
+.kicker{
+  display:inline-block; font-size:12px; font-weight:650; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--saffron); margin-bottom:16px;
+}
+.hero h1{font-size:clamp(52px, 7.2vw, 88px); line-height:.96; margin:0 auto 18px; max-width:12em}
+.lede{font-size:19px; color:#3d332b; max-width:540px; margin:0 auto 28px}
+.lede strong{color:var(--ink)}
+.cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; justify-content:center}
+.hero .btn-solid{
+  background:#f0c14b; color:#1c1612; border-radius:999px; padding:14px 22px;
+  box-shadow:0 10px 28px rgba(176,128,16,.22);
+}
+.hero .btn-solid:hover{background:#e2b226}
+.hero .btn-line{border-radius:999px; background:#fff}
+.fine{font-size:13.5px; color:var(--muted); margin:0}
+.panel{
+  background:var(--card); border:1px solid var(--line); border-radius:28px; padding:22px 22px 10px;
+  box-shadow:0 40px 80px rgba(30,60,110,.14);
+}
+.now{
+  background:var(--indigo); color:#f6efe4; border-radius:18px; padding:14px 16px; margin-bottom:16px;
+}
+.now .k{margin:0 0 6px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#e7b089; font-weight:700}
+.now p{margin:0; font-family:Fraunces, Georgia, serif; font-size:20px; line-height:1.3}
+.sec{margin-bottom:14px}
+.sec h3{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-family:Outfit, sans-serif; font-weight:700; margin:0 0 8px}
+.who{display:flex; flex-wrap:wrap; gap:6px}
+.pill{font-size:12px; background:#f6e7d4; color:#7c3f12; border-radius:99px; padding:4px 10px; font-weight:650}
+.row{display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:4px}
+.bar{height:8px; background:#f0e6d8; border-radius:99px; overflow:hidden; margin-bottom:10px}
+.bar i{display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--saffron),#e8a15a)}
+.gap{font-size:13.5px; background:#fff5ee; border:1px solid #f3d2bc; border-radius:12px; padding:8px 10px}
+.gap b{color:#9a3412}
+.news{padding:0 0 20px}
+.news-card{
+  display:flex; gap:22px; align-items:center; overflow:hidden;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:14px 0;
+}
+.news-card .label{flex:none; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--saffron)}
+.news-card .items{display:flex; gap:22px; overflow:auto; font-size:14px; color:#3d332b}
+.news-card a:hover{color:var(--saffron)}
+section{padding:72px 0; scroll-margin-top:150px}
+.eyebrow{font-size:12px; font-weight:650; letter-spacing:.16em; text-transform:uppercase; color:var(--saffron); margin:0 0 12px}
+h2{font-size:clamp(34px, 4.2vw, 52px); line-height:1.05; max-width:740px}
+.sub{color:#3d332b; font-size:17.5px; max-width:620px; margin:14px 0 36px}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:28px}
+.grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:28px}
+.grid5{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.card{
+  background:transparent; border:0; border-top:1px solid var(--line); border-radius:0; padding:22px 4px 0;
+}
+.card h3{font-size:22px; margin-bottom:8px}
+.card p{margin:0; color:#5c4e42; font-size:15.5px; line-height:1.55}
+.band{background:#1e2a4a; color:#f6efe4}
+.band h2{color:#f6efe4}
+.band .sub{color:#d7cbbd}
+.band .card{border-top-color:rgba(246,239,228,.18)}
+.band .card h3{color:#f6efe4}
+.band .card p{color:#d7cbbd}
+.n{
+  width:auto; height:auto; border-radius:0; background:none; color:var(--saffron);
+  display:block; font-family:Fraunces, Georgia, serif; font-size:34px; font-weight:560;
+  letter-spacing:-.03em; margin-bottom:10px; line-height:1;
+}
+.tag{display:block; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--saffron); margin-bottom:8px}
+.api{
+  display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center;
+  background:#16130f; color:#f6efe4; border-radius:28px; padding:42px;
+}
+.api h2{color:#f6efe4}
+.api p{color:#d9cfc3; margin:10px 0 18px}
+.api .btn-line{color:#f6efe4; border-color:rgba(246,239,228,.35)}
+.code{
+  background:#12192e; border-radius:16px; padding:18px; font-family:ui-monospace, Menlo, monospace;
+  font-size:13px; line-height:1.65; overflow:auto;
+}
+.code .c{color:#e7b089}
+.price-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.plan{
+  background:#fff; border:1px solid var(--line); border-radius:24px; padding:26px 24px 22px;
+}
+.plan .amt{font-family:Fraunces, Georgia, serif; font-size:56px; letter-spacing:-.04em; line-height:1; margin:8px 0 4px}
+.plan ul{margin:16px 0 0; padding:0; list-style:none}
+.plan li{padding:8px 0; border-top:1px solid var(--line); font-size:15px; color:#3d332b}
+.faq details{border-top:1px solid var(--line); padding:16px 0}
+.faq summary{cursor:pointer; font-family:Fraunces, Georgia, serif; font-size:22px; font-weight:560}
+.faq details p{margin:10px 0 0; color:#5c4e42; max-width:640px}
+.final{text-align:center; padding:88px 0 96px}
+.final h2{margin:0 auto 12px; max-width:none}
+.final p{color:#3d332b; margin:0 0 22px; font-size:18px}
+footer{background:#16130f; color:rgba(246,239,228,.62); padding:36px 0 40px; font-size:14px}
+.foot{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+footer a{color:#f6efe4}
+footer .seal{background:transparent; color:#e7b089; border:1px solid rgba(231,176,137,.55)}
+@media(max-width:900px){
+  .api,.grid3,.grid4,.price-grid{grid-template-columns:1fr}
+  .grid5{grid-template-columns:1fr}
+  .hero{padding-top:36px}
+}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap site-head-top">
+    <a class="site-brand" href="./"><span class="site-seal">य</span><span class="site-lockup"><span class="site-name">Yaad</span><span class="site-tag">The tutor that remembers</span></span></a>
+    <div class="site-cta">
+      <a class="site-btn site-btn-line" href="login">Sign in</a>
+      <a class="site-btn site-btn-solid" href="login?mode=signup">Start free</a>
+    </div>
+  </div>
+  <nav class="wrap site-sections" aria-label="Sections">
+    <a href="./#how">How it works</a>
+    <a href="./#loop">Daily loop</a>
+    <a href="./#map">The degree</a>
+    <a href="./#earn">Interviews</a>
+    <a href="./#api">For builders</a>
+    <a href="./#price">Pricing</a>
+    <a href="./#faq">FAQ</a>
+    <a href="founder">Founder</a>
+    <a href="story">The build</a>
+    <a href="privacy">Privacy</a>
+    <a href="contact">Contact</a>
+  </nav>
+</header>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="kicker">For a US master's in Data Science</p>
+      <h1>Less rereading. More of the degree.</h1>
+      <p class="lede">Yaad keeps the concept you missed. The next question is how that idea shows up in an interview.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="login?mode=signup">Start free</a>
+        <a class="btn btn-line" href="#price">Pricing</a>
+      </div>
+      <p class="fine">Google or email. No credit card.</p>
+    </div>
+    <aside class="panel hero-stage" aria-label="A sample of what Yaad remembers">
+      <div class="now">
+        <p class="k">Right now</p>
+        <p>Last time probability tripped you up — Bayes versus conditional probability. Let's fix that first.</p>
+      </div>
+      <div class="sec">
+        <h3>Student</h3>
+        <div class="who">
+          <span class="pill">Maya</span>
+          <span class="pill">MS Data Science · Semester 1</span>
+          <span class="pill">12-day streak</span>
+        </div>
+      </div>
+      <div class="sec">
+        <h3>Touched chapters</h3>
+        <div class="row"><span>Linear Algebra</span><b>78%</b></div>
+        <div class="bar"><i style="width:78%"></i></div>
+        <div class="row"><span>Probability</span><b>43% ↘</b></div>
+        <div class="bar"><i style="width:43%"></i></div>
+        <div class="row"><span>Optimization</span><b>61%</b></div>
+        <div class="bar"><i style="width:61%"></i></div>
+      </div>
+      <div class="sec">
+        <h3>Open gaps</h3>
+        <div class="gap"><b>confuses Bayes' theorem with conditional probability</b><br>Probability · repeated ×3<br>Interview: a rare disease, an accurate test — what is the chance you actually have it?</div>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<div class="news">
+  <div class="wrap">
+    <div class="news-card">
+      <span class="label">Today in data science</span>
+      <div class="items" id="brief">Loading today's brief…</div>
+    </div>
+  </div>
+</div>
+
+<section id="problem" class="band">
+  <div class="wrap">
+    <p class="eyebrow">The problem</p>
+    <h2>Every other tutor starts from zero.</h2>
+    <p class="sub">You close the tab. Tomorrow it has forgotten the concept you missed, the chapter that was weak, and the pace that actually worked.</p>
+    <div class="grid3">
+      <article class="card"><h3>The mistake disappears</h3><p>Getting Bayes wrong once should change the next sitting. Most tutors never write the concept down.</p></article>
+      <article class="card"><h3>The session has no yesterday</h3><p>Mastery, decay, and pace are the memory. Without them, practice does not compound.</p></article>
+      <article class="card"><h3>The degree never becomes a job</h3><p>Courses end at the exam. Interviews ask for the same idea in a different costume, and nothing connects the two.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">How Yaad works</p>
+    <h2>A memory under every question.</h2>
+    <p class="sub">The tutor reads what it already knows about you before it asks anything new.</p>
+    <div class="grid3">
+      <article class="card"><div class="n">1</div><h3>You practise</h3><p>Answer in chat, or take the one question picked for today. Each answer is scored against the concept, not just right or wrong.</p></article>
+      <article class="card"><div class="n">2</div><h3>Yaad remembers</h3><p>Mastery moves. A repeated gap is kept open. A correct answer on that exact concept clears it.</p></article>
+      <article class="card"><div class="n">3</div><h3>The next sitting starts there</h3><p>Weakest chapter first. The drill stays on the miss until it is fixed. A streak marks the days you showed up.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="loop">
+  <div class="wrap">
+    <p class="eyebrow">The daily loop</p>
+    <h2>Practise, test, and stay current.</h2>
+    <p class="sub">Four things the desk does without you setting them up.</p>
+    <div class="grid4">
+      <article class="card"><h3>Today</h3><p>One question on your weakest topic. Skip a week and the score quietly decays.</p></article>
+      <article class="card"><h3>Fix my mistakes</h3><p>The worst open gap is quizzed until a correct answer clears it, then the next one is offered.</p></article>
+      <article class="card"><h3>Streaks</h3><p>Consecutive days with a sitting. The header keeps the count.</p></article>
+      <article class="card"><h3>Industry brief</h3><p>Today's Data Science stories, cached for the day, sitting beside the tutor.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="map">
+  <div class="wrap">
+    <p class="eyebrow">Curriculum map</p>
+    <h2>You are here, across the whole degree.</h2>
+    <p class="sub">One memory for every course. Yaad can say which earlier idea Thursday's class is about to need.</p>
+    <div class="grid3">
+      <article class="card"><span class="tag">Semester 1</span><h3>Mathematics</h3><p>Linear algebra, probability, statistics, calculus. This is the course Machine Learning quietly assumes you still have.</p></article>
+      <article class="card"><span class="tag">Semester 1–2</span><h3>Algorithms</h3><p>Complexity, graphs, dynamic programming. This is the course interviews quote back to you.</p></article>
+      <article class="card"><span class="tag">Semester 2</span><h3>Machine Learning</h3><p>Regression through ensembles. A miss here is usually a probability or linear-algebra miss from last term.</p></article>
+      <article class="card"><span class="tag">Semester 2</span><h3>Databases &amp; data engineering</h3><p>SQL, modeling, Snowflake, dbt, pipelines. The job side of the degree, next to the theory.</p></article>
+      <article class="card"><span class="tag">Semester 3</span><h3>Deep Learning</h3><p>Neural nets, CNNs, transformers, training. It sits on the calculus and the ML you already touched.</p></article>
+      <article class="card"><span class="tag">Still here</span><h3>Class 10 maths</h3><p>The original school pack. The same memory, a different syllabus.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="earn">
+  <div class="wrap">
+    <p class="eyebrow">The earning bridge</p>
+    <h2>Every miss has an interview costume.</h2>
+    <p class="sub">Yaad does not hand you the finished answer. It asks the version a hiring loop actually uses.</p>
+    <div class="grid3">
+      <article class="card"><span class="tag">Probability</span><h3>Bayes, said out loud</h3><p>A test is accurate and the disease is rare. What is the chance you actually have it? That is the same gap as mixing up joint and conditional probability.</p></article>
+      <article class="card"><span class="tag">Algorithms</span><h3>Dynamic programming</h3><p>They want the recurrence and why the subproblems overlap. A course that stopped at "I memorised the code" dies here.</p></article>
+      <article class="card"><span class="tag">Machine learning</span><h3>The metric lied</h3><p>Accuracy went up and the model got worse. Evaluation is the course. The interview is the explanation.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="api">
+  <div class="wrap">
+    <div class="api">
+      <div>
+        <p class="eyebrow" style="color:#e7b089">For builders</p>
+        <h2>The memory is also an API.</h2>
+        <p>Bring your own tutor. Yaad keeps mastery, mistakes, sessions, the daily focus, and a key for each customer. Usage is counted per key, per day.</p>
+        <a class="btn btn-line" href="login?mode=signup">Create an account</a>
+      </div>
+      <pre class="code"><span class="c"># today's focus</span>
+GET /api/students/stu_004/daily
+
+{
+  "topic": "probability",
+  "mastery": 43,
+  "streak": 12
+}</pre>
+    </div>
+  </div>
+</section>
+
+<section id="founder">
+  <div class="wrap">
+    <p class="eyebrow">The person building it</p>
+    <h2>He finished the degree. Yaad is what he is building now.</h2>
+    <p class="sub">Sajan Singh Shergill holds an MS in Data Science from Pace University. Three years testing education-lending software in Mumbai taught him to write the cause of a failure down. Yaad is that habit, kept for a student.</p>
+    <a class="btn btn-line" href="founder">Read the founder story</a>
+  </div>
+</section>
+
+<section id="price">
+  <div class="wrap">
+    <p class="eyebrow">Pricing</p>
+    <h2>Free while you are in the degree.</h2>
+    <p class="sub">One plan. The memory, the degree map, and the interview questions. No card.</p>
+    <article class="plan" style="max-width:420px">
+      <p class="eyebrow">The whole product</p>
+      <p class="amt">$0</p>
+      <p>For the person sitting the master's.</p>
+      <ul>
+        <li>Tutor that keeps the last miss</li>
+        <li>Degree map across your courses</li>
+        <li>Interview questions from your gaps</li>
+        <li>Paste any syllabus</li>
+        <li>A key if you bring your own tutor</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2>The short answers.</h2>
+    <details open>
+      <summary>Who is it for?</summary>
+      <p>Someone in a US master's who is losing the thread between courses. Data science is the first map. Paste another syllabus and the same memory takes that course too.</p>
+    </details>
+    <details>
+      <summary>What does it remember?</summary>
+      <p>Where you are in the degree, the concept behind a miss, and how that idea is asked in an interview. Close the tab. Tomorrow's question still starts there.</p>
+    </details>
+    <details>
+      <summary>What does it cost?</summary>
+      <p>Nothing. Sign in with Google or email. There is no card field.</p>
+    </details>
+    <details>
+      <summary>Who built it?</summary>
+      <p>Sajan Singh Shergill. He holds an MS in Data Science from Pace University and is building the tutor he wanted while he was in the degree.</p>
+    </details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Start with one question.</h2>
+    <p>The tutor will still know it tomorrow.</p>
+    <a class="btn btn-solid" href="login?mode=signup">Create your account</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="./"><span class="seal">य</span>Yaad</a>
+    <span style="display:flex; gap:16px; flex-wrap:wrap">
+      <a href="founder">Founder</a>
+      <a href="story">The build</a>
+      <a href="privacy">Privacy</a>
+      <a href="contact">Contact</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+fetch("/api/brief").then(r => r.json()).then(b => {
+  const items = (b.items || []).slice(0, 4);
+  const el = document.getElementById("brief");
+  if (!items.length) { el.textContent = "Quiet day in the field."; return; }
+  el.innerHTML = items.map(i =>
+    '<a href="' + String(i.url || "#").replace(/"/g, "%22") + '" target="_blank" rel="noopener">▲' +
+    (i.score || 0) + " " + String(i.title || "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])) +
+    "</a>"
+  ).join("");
+}).catch(() => {
+  document.getElementById("brief").textContent = "Brief unavailable right now.";
+});
+</script>
+</body>
+</html>

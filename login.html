@@ -67,7 +67,7 @@ input:focus{outline:none; border-color:var(--saffron)}
   <div id="google_btn"></div>
   <p id="google_note"></p>
 
-  <div class="divider">or with email</div>
+  <div class="divider" id="divider">or with email</div>
 
   <form id="form">
     <div id="name_wrap" style="display:none">
@@ -89,7 +89,9 @@ input:focus{outline:none; border-color:var(--saffron)}
 
 <script>
 const params = new URLSearchParams(location.search);
-const next = params.get("next") || "/app";
+const rawNext = params.get("next") || "";
+const next = /^\/(?![\/\\])/.test(rawNext) ? rawNext : "/app";
+let googleReady = false;
 let mode = params.get("mode") === "signup" ? "signup" : "signin";
 const $ = (id) => document.getElementById(id);
 
@@ -103,6 +105,17 @@ function setMode(m) {
   $("toggle_text").textContent = up ? "Already have an account?" : "New to Yaad?";
   $("toggle").textContent = up ? "Sign in" : "Create an account";
   $("err").style.display = "none";
+  $("divider").textContent = up ? "or sign up with email" : "or with email";
+  renderGoogle();
+}
+
+function renderGoogle() {
+  if (!googleReady) return;
+  $("google_btn").innerHTML = "";
+  google.accounts.id.renderButton($("google_btn"), {
+    theme: "filled_black", size: "large", shape: "pill", width: 340,
+    text: mode === "signup" ? "signup_with" : "signin_with",
+  });
 }
 $("toggle").onclick = () => setMode(mode === "signup" ? "signin" : "signup");
 setMode(mode);
@@ -156,7 +169,8 @@ fetch("/api/auth/config").then(r => r.json()).then(cfg => {
         } catch (e) { fail(e.message); }
       },
     });
-    google.accounts.id.renderButton($("google_btn"), { theme: "filled_black", size: "large", width: 340, text: "continue_with" });
+    googleReady = true;
+    renderGoogle();
   };
   document.head.appendChild(s);
 }).catch(() => { $("google_note").textContent = ""; });

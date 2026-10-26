@@ -139,14 +139,19 @@ $("form").onsubmit = async (ev) => {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    const j = await r.json();
+    const j = await r.json().catch(() => { throw new Error(OFFLINE); });
     if (!r.ok) throw new Error(j.error || "Something went wrong.");
     location.href = next;
   } catch (e) { fail(e.message); }
 };
 
+const OFFLINE = "Sign-in isn't open at this address yet. Yaad's server isn't running here.";
+
 // Google sign-in, only if the server has a client ID configured.
-fetch("/api/auth/config").then(r => r.json()).then(cfg => {
+fetch("/api/auth/config").then(r => {
+  if (!r.ok) throw new Error("no server");
+  return r.json();
+}).then(cfg => {
   if (!cfg.googleClientId) {
     $("google_note").textContent = "Google sign-in coming soon — use email for now.";
     return;
@@ -173,7 +178,10 @@ fetch("/api/auth/config").then(r => r.json()).then(cfg => {
     renderGoogle();
   };
   document.head.appendChild(s);
-}).catch(() => { $("google_note").textContent = ""; });
+}).catch(() => {
+  $("google_note").textContent = OFFLINE;
+  $("submit").disabled = true;
+});
 </script>
 </body>
 </html>
